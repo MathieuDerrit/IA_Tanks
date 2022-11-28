@@ -52,6 +52,11 @@ namespace Complete
                 m_Tanks[i].m_Instance =
                     Instantiate(m_TankPrefab, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
                 m_Tanks[i].m_PlayerNumber = i + 1;
+                if (m_Tanks[i].m_PlayerNumber == 1) {
+                    m_Tanks[i].m_Instance.gameObject.tag = "TankBlue";
+                } else {
+                    m_Tanks[i].m_Instance.gameObject.tag = "TankRed";
+                }
                 m_Tanks[i].Setup();
             }
         }
