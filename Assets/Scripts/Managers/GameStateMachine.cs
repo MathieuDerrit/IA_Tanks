@@ -10,12 +10,11 @@ public class GameStateMachine : MonoBehaviour
 
     #region Properties
     public BaseGameState CurrentGState => _statesGDict[_curentGState];
-    public EgameState _curentGState;
+    private EgameState _curentGState;
     private EgameState _lastGState;
-    private EgameState EgameState = EgameState.MENU;
+    private EgameState EgameState = EgameState.NONE;
     public EgameState CurrentStateType => _curentGState;
     public EgameState LastGState { get => _lastGState; set => _lastGState = value; }
-
     #endregion
 
     #region Methods
@@ -52,7 +51,7 @@ public class GameStateMachine : MonoBehaviour
         CurrentGState.FixedUpdateState();
     }
 
-    public void changeState(EgameState nextState, bool switchSong)
+    public void changeState(EgameState nextState,bool switchSong)
     {
         CurrentGState.LeaveState();
         _curentGState = nextState;
@@ -86,3 +85,4 @@ public enum EgameState
     MENU,
     NONE
 }
+

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("test");
         // This line fixes a change to the physics engine.
         Physics.defaultMaxDepenetrationVelocity = k_MaxDepenetrationVelocity;
         
@@ -39,12 +40,14 @@ public class GameManager : MonoBehaviour
 
 
     private void SpawnAllTanks()
-    {
+    { 
         for (int i = 0; i < m_Tanks.Length; i++)
         {
             m_Tanks[i].m_Instance =
                 Instantiate(m_TankPrefab, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
             m_Tanks[i].m_PlayerNumber = i + 1;
+            m_Tanks[i].m_Instance.gameObject.tag="Player";
+            Debug.Log(m_Tanks[i].m_Instance.gameObject.tag);
             m_Tanks[i].Setup();
         }
     }
