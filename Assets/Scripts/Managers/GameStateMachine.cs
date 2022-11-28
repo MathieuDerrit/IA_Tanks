@@ -52,7 +52,7 @@ public class GameStateMachine : MonoBehaviour
         CurrentGState.FixedUpdateState();
     }
 
-    public void changeState(EgameState nextState,bool switchSong)
+    public void changeState(EgameState nextState, bool switchSong)
     {
         CurrentGState.LeaveState();
         _curentGState = nextState;
@@ -61,11 +61,17 @@ public class GameStateMachine : MonoBehaviour
 
     #endregion
 
+    #region LoadFunction
     public void startState(){
-        CurrentGState.LeaveState();
-        _curentGState = EgameState.START;
-        CurrentGState.StartState();
+        changeState(EgameState.START, true);
     }
+
+    public void exitState(){
+        Debug.Log("Test");
+        Application.Quit();
+    }
+
+    #endregion
 
     #endregion
 }
