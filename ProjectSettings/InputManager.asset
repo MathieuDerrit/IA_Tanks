@@ -169,8 +169,8 @@ InputManager:
     m_Name: Horizontal1
     descriptiveName: Horizontal gamepad axis for player 1
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: a
+    positiveButton: d
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -185,8 +185,8 @@ InputManager:
     m_Name: Vertical1
     descriptiveName: Vertical gamepad axis for player 1
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: s
+    positiveButton: w
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -217,8 +217,8 @@ InputManager:
     m_Name: Horizontal2
     descriptiveName: Horizontal gamepad axis for player 2
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: left
+    positiveButton: right
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -233,8 +233,8 @@ InputManager:
     m_Name: Vertical2
     descriptiveName: Vertical gamepad axis for player 2
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: down
+    positiveButton: up
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
