@@ -62,12 +62,16 @@ public class GameStateMachine : MonoBehaviour
     #endregion
 
     #region LoadFunction
-    public void startState(){
+    public void start1PlayerState(){
         changeState(EgameState.START, true);
     }
 
+    public void start2PlayersState(){
+        changeState(EgameState.START, true);
+    }
+
+
     public void exitState(){
-        Debug.Log("Test");
         Application.Quit();
     }
 
