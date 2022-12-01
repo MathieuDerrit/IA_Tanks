@@ -21,6 +21,16 @@ namespace Complete
             m_Camera = GetComponentInChildren<Camera> ();
         }
 
+        private void Start() {
+            GameStateMachine.Instance.m_Tanks[0].m_PlayerColor = Color.blue;
+            GameStateMachine.Instance.m_Tanks[1].m_PlayerColor = Color.red;
+
+            GameStateMachine.Instance.m_Tanks[0].m_SpawnPoint = GameObject.Find("SpawnPoint1").transform;
+            GameStateMachine.Instance.m_Tanks[1].m_SpawnPoint = GameObject.Find("SpawnPoint2").transform;
+
+            GameStateMachine.Instance.m_CameraControl = this;
+        }
+
 
         private void FixedUpdate ()
         {

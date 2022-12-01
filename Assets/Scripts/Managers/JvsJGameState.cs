@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartGameState : BaseGameState
+public class JvsJGameState : BaseGameState
 {
-    #region fileds
+    #region Fields
 
     #endregion
 
@@ -16,7 +16,8 @@ public class StartGameState : BaseGameState
     #region Methods   
     public override void StartState()
     {
-        _machine.LastGState = EgameState.START;
+        Debug.Log("START J vs J");
+        _machine.LastGState = EgameState.START_JVSJ;
         SceneManager.LoadScene(1);
     }
 
