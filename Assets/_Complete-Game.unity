@@ -3167,6 +3167,8 @@ MonoBehaviour:
   m_FillImage: {fileID: 259987148}
   _bluePts: {fileID: 1109675828}
   _redPts: {fileID: 1567191930}
+  Star_B: {fileID: 1500378020736912, guid: 2547a66872ebe45408ace228820a79e1, type: 3}
+  ShockWave: {fileID: 1714681308540598, guid: 5cbc537826220e04592d5a41a0dd985f, type: 3}
 --- !u!1 &2013090028 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: a1194fc0a76098e499948ecf77b6acdf,

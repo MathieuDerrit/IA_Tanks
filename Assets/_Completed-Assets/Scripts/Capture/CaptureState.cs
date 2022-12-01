@@ -21,6 +21,9 @@ public class CaptureState : MonoBehaviour
                      
     public TMP_Text bluePts { get => _bluePts; set => _bluePts = value; }
     public TMP_Text redPts { get => _redPts; set => _redPts = value; }
+
+    public GameObject Star_B; 
+    public GameObject ShockWave; 
     
 
 
@@ -102,6 +105,11 @@ public class CaptureState : MonoBehaviour
     public Color GetColorZone() {
         return m_FillImage.color;
     } 
+
+    public void prefabInstance(GameObject prefab) {
+        GameObject pref = Instantiate(prefab, gameObject.transform.position, Quaternion.identity);
+        Destroy(pref, 1f);
+    }
 }
 
 public enum EcaptureState
