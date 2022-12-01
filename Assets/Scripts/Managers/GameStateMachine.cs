@@ -29,14 +29,13 @@ public class GameStateMachine : MonoBehaviour
 
     private void SubGStateInit()
     {
-        StartGameState startState = new StartGameState();
-        startState.Init(this, EgameState.START);
-        _statesGDict.Add(EgameState.START, startState);
-
         MenuGameState menuState = new MenuGameState();
         menuState.Init(this, EgameState.MENU);
         _statesGDict.Add(EgameState.MENU, menuState);
 
+        StartGameState startState = new StartGameState();
+        startState.Init(this, EgameState.START);
+        _statesGDict.Add(EgameState.START, startState);
     }
     #endregion
 
@@ -81,8 +80,8 @@ public class GameStateMachine : MonoBehaviour
 
 public enum EgameState
 {
-    START,
     MENU,
+    START,
     NONE
 }
 
