@@ -26,9 +26,10 @@ public class JvsIAGameState : BaseGameState
     #region Methods   
     public override void StartState()
     {
+        Debug.Log("START J vs IA");
         _machine.LastGState = EgameState.START_IA;
         SceneManager.LoadScene(1);
-
+/*
         // This line fixes a change to the physics engine.
         Physics.defaultMaxDepenetrationVelocity = k_MaxDepenetrationVelocity;
             
@@ -41,6 +42,7 @@ public class JvsIAGameState : BaseGameState
 
         // Once the tanks have been created and the camera is using them as targets, start the game.
         _machine.StartCoroutine (GameLoop());
+*/
     }
 
     public override void UpdateState()

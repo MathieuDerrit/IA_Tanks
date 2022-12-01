@@ -12,6 +12,7 @@ namespace Complete
         public CameraControl m_CameraControl;       // Reference to the CameraControl script for control during different phases.
         public Text m_MessageText;                  // Reference to the overlay Text to display winning text, etc.
         public GameObject m_TankPrefab;             // Reference to the prefab the players will control.
+        public GameObject m_TankPrefabIA;
         public TankManager[] m_Tanks;               // A collection of managers for enabling and disabling different aspects of the tanks.
 
         private WaitForSeconds m_StartWait;         // Used to have a delay whilst the round starts.
@@ -32,7 +33,8 @@ namespace Complete
             m_StartWait = new WaitForSeconds (m_StartDelay);
             m_EndWait = new WaitForSeconds (m_EndDelay);
 
-            SpawnAllTanks();
+            //SpawnAllTanks();
+            SpawnAllTanks_JVSIA();
             SetCameraTargets();
 
             // Once the tanks have been created and the camera is using them as targets, start the game.
@@ -55,6 +57,25 @@ namespace Complete
                 }
                 m_Tanks[i].Setup();
             }
+        }
+
+        private void SpawnAllTanks_JVSIA()
+        { 
+            m_Tanks[0].m_Instance =
+                Instantiate(m_TankPrefab, m_Tanks[0].m_SpawnPoint.position, m_Tanks[0].m_SpawnPoint.rotation) as GameObject;
+            m_Tanks[0].m_PlayerNumber = 1;
+            m_Tanks[0].m_Instance.gameObject.tag="Player";
+            Debug.Log(m_Tanks[0].m_Instance.gameObject.tag);
+            m_Tanks[0].Setup();   
+
+            m_Tanks[1].m_Instance =
+                Instantiate(m_TankPrefabIA, m_Tanks[1].m_SpawnPoint.position, m_Tanks[1].m_SpawnPoint.rotation) as GameObject;
+            m_Tanks[1].m_PlayerNumber = 2;
+            m_Tanks[1].m_Instance.gameObject.tag="Player";
+            m_Tanks[1].isPlayer = false;
+            m_Tanks[1].ennemy = m_Tanks[0].m_Instance;
+            Debug.Log(m_Tanks[1].m_Instance.gameObject.tag);
+            m_Tanks[1].Setup();   
         }
 
 
