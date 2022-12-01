@@ -42,6 +42,9 @@ public class StartCaptureState : BaseCaptureState
     bool redCaptureStatus = false;
     bool blueCaptureStatus = false;
 
+    bool redIsFull = false;
+    bool blueIsFull = false;
+
     bool redOnZone = false;
     bool blueOnZone = false;
 
@@ -97,8 +100,13 @@ public class StartCaptureState : BaseCaptureState
             //Else the teams capture time is greater than the capture time
             else
             {
+                if (!blueIsFull) {
+                    _machine.prefabInstance(_machine.Star_B);
+                    _machine.prefabInstance(_machine.ShockWave);
+                }
                 //Set the capture status of the team to true and the enemys team to false
                 blueCaptureStatus = true;
+                blueIsFull = true;
             }
         }
 
@@ -121,14 +129,20 @@ public class StartCaptureState : BaseCaptureState
             //Else the teams capture time is greater than the capture time
             else
             {
+                if (!redIsFull) {
+                    _machine.prefabInstance(_machine.Star_B);
+                    _machine.prefabInstance(_machine.ShockWave);
+                }
                 //Set the capture status of the team to true and the enemys team to false
                 redCaptureStatus = true;
+                redIsFull = true;
             }
         }
 
  
         //If the enemy teams capture time is greater than 0
         if (!redOnZone && redCapture > 0) {
+            redIsFull = false;
             //Subtract the enemy teams capture time
             if (redCaptureStatus) {
                 redCapture -= Time.deltaTime/2;
@@ -143,6 +157,7 @@ public class StartCaptureState : BaseCaptureState
         }
         //If the enemy teams capture time is greater than 0
         if (!blueOnZone && blueCapture > 0) {
+            blueIsFull = false;
             //Subtract the enemy teams capture time
             if (blueCaptureStatus) {
                 blueCapture -= Time.deltaTime/2;
