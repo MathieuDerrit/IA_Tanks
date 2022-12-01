@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Complete
 {
@@ -13,6 +14,9 @@ namespace Complete
         public Text m_MessageText;                  // Reference to the overlay Text to display winning text, etc.
         public GameObject m_TankPrefab;             // Reference to the prefab the players will control.
         public TankManager[] m_Tanks;               // A collection of managers for enabling and disabling different aspects of the tanks.
+
+        public TMP_Text bluePts; 
+        public TMP_Text redPts;
 
         private WaitForSeconds m_StartWait;         // Used to have a delay whilst the round starts.
         private WaitForSeconds m_EndWait;           // Used to have a delay whilst the round or game ends.
@@ -214,21 +218,20 @@ namespace Complete
         // Returns a string message to display at the end of each round.
         private string EndMessage()
         {
-            // By default when a round ends there are no winners so the default end message is a draw.
+            Debug.Log(m_GameWinner.m_ColoredPlayerText);
             string message = "";
-
-            // Add some line breaks after the initial message.
-            message += "\n\n\n\n";
-
-            // Go through all the tanks and add each of their scores to the message.
-            for (int i = 0; i < m_Tanks.Length; i++)
-            {
-                message += m_Tanks[i].m_ColoredPlayerText + ": " + m_Tanks[i].m_Wins + " WINS\n";
-            }
-
+            
             // If there is a game winner, change the entire message to reflect that.
             if (m_GameWinner != null)
                 message = m_GameWinner.m_ColoredPlayerText + " GAGNE LA PARTIE !";
+                message += "\n\n";
+                if(m_GameWinner == m_Tanks[0]){
+                    message += "Son score : " + bluePts;
+                }
+
+                if(m_GameWinner == m_Tanks[1]){
+                    message += "Son score : " + redPts;
+                }
 
             return message;
         }
