@@ -18,7 +18,7 @@ public class JvsJGameState : BaseGameState
     {
         Debug.Log("START J vs J");
         _machine.LastGState = EgameState.START_JVSJ;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public override void UpdateState()
