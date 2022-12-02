@@ -126,17 +126,9 @@ namespace Complete
             yield return StartCoroutine (GameEnding());
 
             // This code is not run until 'RoundEnding' has finished.  At which point, check if a game winner has been found.
-            if (m_GameWinner != null)
-            {
-                // If there is a game winner, restart the level.
+
                 SceneManager.LoadScene (0);
-            }
-            else
-            {
-                // If there isn't a winner yet, restart this coroutine so the loop continues.
-                // Note that this coroutine doesn't yield.  This means that the current version of the GameLoop will end.
-                StartCoroutine (GameLoop ());
-            }
+ 
         }
 
 
@@ -236,6 +228,13 @@ namespace Complete
         // This function is to find out if there is a winner of the game.
         private TankManager GetGameWinner()
         {
+            if (int.Parse(bluePts.text) > int.Parse(redPts.text)) {
+                return m_Tanks[0];
+            }
+            else if (int.Parse(bluePts.text) < int.Parse(redPts.text)) {
+                return m_Tanks[1];
+            }
+            /*
             // Go through all the tanks...
             for (int i = 0; i < m_Tanks.Length; i++)
             {
@@ -243,7 +242,7 @@ namespace Complete
                 if (m_Tanks[i].m_Wins == 1)
                     return m_Tanks[i];
             }
-
+*/
             // If no tanks have enough rounds to win, return null.
             return null;
         }
@@ -252,19 +251,23 @@ namespace Complete
         // Returns a string message to display at the end of each round.
         private string EndMessage()
         {
-            Debug.Log(m_GameWinner.m_ColoredPlayerText);
+
             string message = "";
             
             // If there is a game winner, change the entire message to reflect that.
-            if (m_GameWinner != null)
+            if (m_GameWinner != null) {
                 message = m_GameWinner.m_ColoredPlayerText + " GAGNE LA PARTIE !";
+            } else {
+                message = "Egalite";
+            }
+                
                 message += "\n\n";
                 if(m_GameWinner == m_Tanks[0]){
-                    message += "Son score : " + bluePts;
+                    message += "Son score : " + bluePts.text;
                 }
 
                 if(m_GameWinner == m_Tanks[1]){
-                    message += "Son score : " + redPts;
+                    message += "Son score : " + redPts.text;
                 }
 
             return message;

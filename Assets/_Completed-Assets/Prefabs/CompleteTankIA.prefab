@@ -10621,7 +10621,7 @@ MonoBehaviour:
   m_ShootingAudio: {fileID: 8261418}
   m_FireClip: {fileID: 8300000, guid: 672a9941361ad494a99fba36759eca80, type: 3}
   followPlayerRange: 50
-  attackRange: 40
+  attackRange: 20
   startTimeBtwnShots: 1
 --- !u!195 &-5167872422430003122
 NavMeshAgent:

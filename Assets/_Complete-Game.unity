@@ -726,7 +726,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 310606024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a000792783c934885973b761b3f96f, type: 3}
+  m_Script: {fileID: 11500000, guid: 94539ae14c1a2b6498669588e84cfbc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartDelay: 3
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_TankPrefab: {fileID: 173472, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
   m_TankPrefabIA: {fileID: 173472, guid: e7c1619cf87ef684488ce9a2ad1f5459, type: 3}
   m_Tanks:
-  - m_PlayerColor: {r: 0, g: 0, b: 1, a: 0}
+  - m_PlayerColor: {r: 0, g: 0.021962643, b: 1, a: 0}
     m_SpawnPoint: {fileID: 194018016}
     m_PlayerNumber: 0
     m_ColoredPlayerText: 
@@ -750,12 +750,12 @@ MonoBehaviour:
     m_ColoredPlayerText: 
     m_Instance: {fileID: 0}
     m_Wins: 0
-    isPlayer: 1
+    isPlayer: 0
     ennemy: {fileID: 0}
   bluePts: {fileID: 1109675828}
   redPts: {fileID: 1567191930}
   Timer: {fileID: 1615296649}
-  timing: 60
+  timing: 30
 --- !u!4 &310606026
 Transform:
   m_ObjectHideFlags: 0
