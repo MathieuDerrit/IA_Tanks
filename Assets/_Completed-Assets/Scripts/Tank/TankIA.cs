@@ -8,6 +8,8 @@ public class TankIA : MonoBehaviour
     public Transform player;
     public Transform shotPoint;
     public Transform gun;
+
+    public UnityEngine.AI.NavMeshAgent agent;
  
     public Rigidbody m_Shell; 
 
@@ -30,7 +32,7 @@ public class TankIA : MonoBehaviour
         //gun.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
 
         Vector3 targetPos = new Vector3(player.position.x, transform.position.y, player.position.z);
-        transform.LookAt(targetPos);
+        //transform.LookAt(targetPos);
  
         if (Vector2.Distance(transform.position, player.position) <= followPlayerRange && Vector2.Distance(transform.position, player.position) > attackRange)
         {
@@ -71,7 +73,10 @@ public class TankIA : MonoBehaviour
     {
         if (inRange)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            //transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            agent.SetDestination(player.position);
+        } else {
+            agent.SetDestination(transform.position);
         }
     }
  
