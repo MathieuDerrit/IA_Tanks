@@ -19,6 +19,9 @@ namespace Complete
         public TMP_Text bluePts; 
         public TMP_Text redPts;
 
+        public TMP_Text Timer;  
+        public float timing = 30.0f;
+
         private WaitForSeconds m_StartWait;         // Used to have a delay whilst the round starts.
         private WaitForSeconds m_EndWait;           // Used to have a delay whilst the round or game ends.
         private TankManager m_RoundWinner;          // Reference to the winner of the current round.  Used to make an announcement of who won.
@@ -45,6 +48,16 @@ namespace Complete
             StartCoroutine (GameLoop());
         }
 
+        void Update() 
+        {     
+            if(timing>0)     
+            {         
+                timing -= Time.deltaTime;     
+            }     
+            double b = System.Math.Round (timing, 2);     
+            Timer.text = b.ToString ();     
+        }
+
         private void SpawnAllTanks()
         {
             // For all the tanks...
@@ -68,14 +81,14 @@ namespace Complete
             m_Tanks[0].m_Instance =
                 Instantiate(m_TankPrefab, m_Tanks[0].m_SpawnPoint.position, m_Tanks[0].m_SpawnPoint.rotation) as GameObject;
             m_Tanks[0].m_PlayerNumber = 1;
-            m_Tanks[0].m_Instance.gameObject.tag="Player";
+            m_Tanks[0].m_Instance.gameObject.tag="TankBlue";
             Debug.Log(m_Tanks[0].m_Instance.gameObject.tag);
             m_Tanks[0].Setup();   
 
             m_Tanks[1].m_Instance =
                 Instantiate(m_TankPrefabIA, m_Tanks[1].m_SpawnPoint.position, m_Tanks[1].m_SpawnPoint.rotation) as GameObject;
             m_Tanks[1].m_PlayerNumber = 2;
-            m_Tanks[1].m_Instance.gameObject.tag="Player";
+            m_Tanks[1].m_Instance.gameObject.tag="TankRed";
             m_Tanks[1].isPlayer = false;
             m_Tanks[1].ennemy = m_Tanks[0].m_Instance;
             Debug.Log(m_Tanks[1].m_Instance.gameObject.tag);
@@ -146,10 +159,10 @@ namespace Complete
             EnableTankControl ();
 
             // Clear the text from the screen.
-            m_MessageText.text = string.Empty;
+            m_MessageText.text = string.Empty;   
 
             // While there is not one tank left...
-            while (!OneTankLeft())
+            while (!OneTankLeft() && timing > 0)
             {
                 // ... return on the next frame.
                 yield return null;
