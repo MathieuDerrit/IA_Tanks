@@ -110,6 +110,14 @@ public class CaptureState : MonoBehaviour
         GameObject pref = Instantiate(prefab, gameObject.transform.position, Quaternion.identity);
         Destroy(pref, 1f);
     }
+
+    public void setScore(int score, string tag) {
+        if (tag == "TankBlue") {
+            bluePts.text = (int.Parse(bluePts.text) + score).ToString();
+        } else if (tag == "TankRed") {
+            redPts.text = (int.Parse(redPts.text) + score).ToString();
+        }
+    }
 }
 
 public enum EcaptureState

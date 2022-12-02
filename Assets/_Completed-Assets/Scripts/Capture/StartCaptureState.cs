@@ -8,6 +8,9 @@ public class StartCaptureState : BaseCaptureState
     private float bluePts = 0f;
     private float redPts = 0f;
 
+    private float lastBluePts = 0f;
+    private float lastRedPts = 0f;
+
     private string tankTag = "none";
 
 
@@ -74,9 +77,6 @@ public class StartCaptureState : BaseCaptureState
         if (redOnZone && blueOnZone) {
             _machine.changeState(EcaptureState.CONFLICT, true);
         }
-
-        Debug.Log("--------------RED----------" + redOnZone);
-        Debug.Log("--------------BLUE----------" + blueOnZone);
     }
 
     public override void UpdateState()
@@ -172,11 +172,18 @@ public class StartCaptureState : BaseCaptureState
         
         if (redCapture > 0 && redCaptureStatus) {
             redPts += Time.deltaTime;
-            _machine.redPts.text = (Mathf.FloorToInt(redPts)).ToString();
+            if ((lastRedPts - Mathf.FloorToInt(redPts)) != 0) {
+                lastRedPts = Mathf.FloorToInt(redPts);
+                _machine.setScore(Mathf.FloorToInt(redPts), tankTag);
+            }
         }
+
         if (blueCapture > 0 && blueCaptureStatus) {
             bluePts += Time.deltaTime;
-            _machine.bluePts.text = (Mathf.FloorToInt(bluePts)).ToString();;
+            if ((lastBluePts - Mathf.FloorToInt(bluePts)) != 0) {
+                lastBluePts = Mathf.FloorToInt(bluePts);
+                _machine.setScore(Mathf.FloorToInt(bluePts), tankTag);
+            }
         }
 
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 //using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class GameManager : MonoBehaviour
     public CameraControl m_CameraControl;   
     public Text m_MessageText;              
     public GameObject m_TankPrefab;         
-    public TankManager[] m_Tanks;           
+    public TankManager[] m_Tanks;   
+
+    public TMP_Text Timer;  
+    float cntdnw = 30.0f;
 
 
     private int m_RoundNumber;              
@@ -50,6 +54,25 @@ public class GameManager : MonoBehaviour
             Debug.Log(m_Tanks[i].m_Instance.gameObject.tag);
             m_Tanks[i].Setup();
         }
+    }
+/*
+    private void SetTimer()
+    { 
+
+    }
+*/
+    void Update() 
+    {     
+        if(cntdnw>0)     
+        {         
+            cntdnw -= Time.deltaTime;     
+        }     
+        double b = System.Math.Round (cntdnw, 2);     
+        Timer.text = b.ToString ();     
+        if(cntdnw < 0)     
+        {         
+            Debug.Log ("Completed");     
+        } 
     }
 
 
