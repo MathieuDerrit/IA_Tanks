@@ -29,7 +29,6 @@ namespace Complete
 
 
         const float k_MaxDepenetrationVelocity = float.PositiveInfinity;
-
         
         private void Start()
         {
@@ -46,6 +45,7 @@ namespace Complete
 
             // Once the tanks have been created and the camera is using them as targets, start the game.
             StartCoroutine (GameLoop());
+
         }
 
         void Update() 
