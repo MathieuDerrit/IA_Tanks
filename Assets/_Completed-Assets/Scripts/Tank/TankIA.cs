@@ -23,10 +23,17 @@ public class TankIA : MonoBehaviour
     public float startTimeBtwnShots;
     private float timeBtwnShots;
  
+    void Start(){
+        agent.speed = 8;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Vector3 differance = player.position - gun.transform.position;
+        ChasePlayer();
+        Attack();
+
+        /*Vector3 differance = player.position - gun.transform.position;
         float rotZ = Mathf.Atan2(differance.y, differance.x) * Mathf.Rad2Deg;
         Debug.Log(differance);
         //gun.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
@@ -66,10 +73,10 @@ public class TankIA : MonoBehaviour
             {
                 timeBtwnShots -= Time.deltaTime;
             }
-        }
+        }*/
     }
  
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         if (inRange)
         {
@@ -78,11 +85,66 @@ public class TankIA : MonoBehaviour
         } else {
             agent.SetDestination(transform.position);
         }
-    }
- 
-    void OnDrawGizmos()
+    }*/
+
+    private void ChasePlayer()
     {
-        Gizmos.DrawWireSphere(transform.position, followPlayerRange);
+        agent.SetDestination(player.position);
+    }
+
+    void Attack(){
+        /*//Instantiate(enemyProjectile, shotPoint.position, shotPoint.transform.rotation);
+
+        // Create an instance of the shell and store a reference to it's rigidbody.
+        Rigidbody shellInstance =
+        Instantiate(m_Shell, shotPoint.position, shotPoint.transform.rotation) as Rigidbody;
+
+        // Set the shell's velocity to the launch force in the fire position's forward direction.
+        shellInstance.velocity = 15f * shotPoint.forward; 
+
+        // Change the clip to the firing clip and play it.
+        m_ShootingAudio.clip = m_FireClip;
+        m_ShootingAudio.Play ();
+
+        timeBtwnShots = startTimeBtwnShots;*/
+
+            if (Vector2.Distance(transform.position, player.position) <= followPlayerRange && Vector2.Distance(transform.position, player.position) > attackRange)
+        {
+            inRange = true;
+        }
+        else
+        {
+            inRange = false;
+        }
+ 
+        if (Vector2.Distance(transform.position, player.position) <= attackRange)
+        {
+            if (timeBtwnShots <= 0)
+            {
+                //Instantiate(enemyProjectile, shotPoint.position, shotPoint.transform.rotation);
+
+                // Create an instance of the shell and store a reference to it's rigidbody.
+                Rigidbody shellInstance =
+                    Instantiate(m_Shell, shotPoint.position, shotPoint.transform.rotation) as Rigidbody;
+
+                // Set the shell's velocity to the launch force in the fire position's forward direction.
+                shellInstance.velocity = 15f * shotPoint.forward; 
+
+                // Change the clip to the firing clip and play it.
+                m_ShootingAudio.clip = m_FireClip;
+                m_ShootingAudio.Play ();
+
+                timeBtwnShots = startTimeBtwnShots;
+            }
+            else
+            {
+                timeBtwnShots -= Time.deltaTime;
+            }
+    }
+    }
+
+    void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }

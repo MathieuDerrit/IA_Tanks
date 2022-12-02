@@ -3,18 +3,20 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    public Camera cam;
-    public NavMeshAgent agent;
+    public GameObject player;
+    public float distance = 10;
+    public float speed = 1;
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)){
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        distance = Vector2.Distance(transform.position, player.transform.position);
+        Vector2 direction = player.transform.position - transform.position;
+        direction.Normalize();
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            if(Physics.Raycast(ray, out hit)){
-                agent.SetDestination(hit.point);
-            }
+        if(distance < 4){
+            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(Vector3.forward * angle);
         }
     }
 }

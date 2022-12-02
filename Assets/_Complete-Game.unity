@@ -4020,8 +4020,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d651b6c0be7ef34aadcacc9e3cdb37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1391056263}
-  agent: {fileID: 1598138881}
+  player: {fileID: 0}
+  distance: 10
+  speed: 1
 --- !u!195 &1598138881
 NavMeshAgent:
   m_ObjectHideFlags: 0
